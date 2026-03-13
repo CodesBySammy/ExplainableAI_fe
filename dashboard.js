@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         localStorage.removeItem('xai_logged_in');
         
         // Call backend to clear HTTPOnly cookie
-        await fetch('/api/auth/logout', { method: 'POST' });
+        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
         window.location.href = '/';
     });
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
 
         // --- Fetch User Profile ---
-        const userRes = await fetch('/api/user');
+        const userRes = await fetch('/api/user', { credentials: 'include' });
         if (!userRes.ok) {
             throw new Error("Session expired");
         }
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         userAvatarEl.replaceWith(img);
 
         // --- Fetch Repositories ---
-        const reposRes = await fetch('/api/user/repos');
+        const reposRes = await fetch('/api/user/repos', { credentials: 'include' });
         if (!reposRes.ok) {
             throw new Error("Failed to load repositories");
         }
@@ -150,7 +150,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const res = await fetch('/api/register-repo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ repo_full_name: repoFullName })
+                body: JSON.stringify({ repo_full_name: repoFullName }),
+                credentials: 'include'
             });
             const data = await res.json();
 
@@ -248,7 +249,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const res = await fetch('/api/unregister-repo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ repo_full_name: repoFullName })
+                body: JSON.stringify({ repo_full_name: repoFullName }),
+                credentials: 'include'
             });
             const data = await res.json();
 
