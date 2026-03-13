@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XAI Reviewer | AI-Powered Code Intelligence</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Base Styles and New Landing Styles -->
+    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="landing.css?v=2.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-title br { display: none; }
+        @media (min-width: 768px) {
+            .hero-title br { display: block; }
+        }
+    </style>
+</head>
+<body class="landing-body">
+    <!-- Background Orbs -->
+    <div class="background-orbs fixed-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i data-feather="cpu" class="nav-icon"></i>
+                <span>XAI Reviewer</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it Works</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="badge fade-up">v2.0 Enterprise SaaS Live</div>
+            <h1 class="hero-title fade-up">
+                Code Review, <br>
+                <span class="text-gradient">Supercharged by AI.</span>
+            </h1>
+            <p class="hero-subtitle fade-up">
+                Connect your GitHub repository in seconds. Our Explainable AI agent autonomously reviews Pull Requests, identifies bugs, and suggests fixes before you ever hit merge.
+            </p>
+            <div class="hero-cta fade-up">
+                <a href="/api/auth/login" class="premium-btn github-login-btn large-btn">
+                    <i data-feather="github" class="btn-icon"></i>
+                    <span class="btn-text">Get Started with GitHub</span>
+                </a>
+            </div>
+            
+            <!-- Dashboard Preview Graphic -->
+            <div class="dashboard-preview-wrapper fade-up">
+                <div class="glass-card dashboard-preview">
+                    <div class="preview-header">
+                        <div class="dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="search-bar">github.com/torvalds/linux/pull/1</div>
+                    </div>
+                    <div class="preview-body">
+                        <div class="code-block">
+                            <span class="line"><span class="keyword">def</span> process_data(payload):</span>
+                            <span class="line highlight">    <span class="keyword">return</span> payload[<span class="string">'id'</span>] <span class="comment"># Uncaught KeyError Risk</span></span>
+                        </div>
+                        <div class="ai-comment">
+                            <div class="ai-avatar"><i data-feather="cpu"></i></div>
+                            <div class="ai-text">
+                                <strong>XAI Reviewer:</strong> I detected a potential `KeyError` here. Based on my AST analysis, `payload` might not always contain `'id'`. Consider using `.get('id')`.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-container">
+            <h2 class="section-title text-center block-reveal">Enterprise-Grade Intelligence</h2>
+            <p class="section-subtitle text-center block-reveal">Built on CodeBERT and deep AST analysis, our agent understands your codebase like a Senior Engineer.</p>
+            
+            <div class="features-grid">
+                <div class="feature-box glass-card hover-lift">
+                    <div class="feature-icon"><i data-feather="zap"></i></div>
+                    <h3>Instant Feedback</h3>
+                    <p>Webhooks trigger the AI the second a PR is opened. Reviews are posted in under 10 seconds.</p>
+                </div>
+                <div class="feature-box glass-card hover-lift delay-1">
+                    <div class="feature-icon"><i data-feather="eye"></i></div>
+                    <h3>Explainable AI</h3>
+                    <p>We don't just say a line is wrong. Using SHAP values, we explain *why* the model flagged the defect.</p>
+                </div>
+                <div class="feature-box glass-card hover-lift delay-2">
+                    <div class="feature-icon"><i data-feather="shield"></i></div>
+                    <h3>Smart Gatekeeper</h3>
+                    <p>Automatically block merges by setting GitHub Status Checks to 'failed' if critical bugs are detected.</p>
+                </div>
+                <div class="feature-box glass-card hover-lift delay-3">
+                    <div class="feature-icon"><i data-feather="message-square"></i></div>
+                    <h3>Inline Comments</h3>
+                    <p>The AI posts comments directly on the exact lines of code that need fixing, maintaining developer flow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-container">
+            <div class="split-layout">
+                <div class="split-text">
+                    <h2 class="section-title sidereveal">Zero config. <br>Infinite value.</h2>
+                    <ul class="steps-list">
+                        <li class="step-item sidereveal">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Authenticate with GitHub</h4>
+                                <p>Secure OAuth 2.0 flow grants minimum necessary access to read PRs and post comments.</p>
+                            </div>
+                        </li>
+                        <li class="step-item sidereveal delay-1">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Select your Repositories</h4>
+                                <p>Use your beautiful SaaS dashboard to toggle AI tracking on specific public or private repos.</p>
+                            </div>
+                        </li>
+                        <li class="step-item sidereveal delay-2">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Let the AI work</h4>
+                                <p>Open a PR. Go grab a coffee. When you return, the review is waiting for you.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="split-visual sidereveal delay-2">
+                    <div class="connection-graphic glass-card">
+                        <div class="node github">
+                            <i data-feather="github"></i>
+                        </div>
+                        <div class="line animated"></div>
+                        <div class="node ai pulse">
+                            <i data-feather="cpu"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bottom-cta">
+        <div class="section-container text-center">
+            <h2 class="section-title fade-up">Ready to elevate your code?</h2>
+            <p class="section-subtitle fade-up">Join thousands of developers catching bugs before production.</p>
+            <div class="fade-up" style="margin-top: 40px;">
+                <a href="#home" class="premium-btn github-login-btn large-btn" style="max-width: 300px; margin: 0 auto;">
+                    <span class="btn-text">Get Started</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i data-feather="cpu" style="color: #a855f7;"></i>
+                    <span>XAI Reviewer</span>
+                </div>
+                <p class="footer-copyright">&copy; 2026 Enterprise XAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js?v=5.0"></script>
+    <script src="landing.js?v=5.0"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
